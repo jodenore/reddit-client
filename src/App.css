@@ -1,0 +1,16 @@
+:root {
+  --tw-color-stone-50: 250 250 249;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  --tw-border-opacity: 1;
+}
+
+body {
+  background-color: rgb(var(--tw-color-gray-200) / var(--tw-bg-opacity));
+}
+
+div.main-container {
+  max-width: 1550px;
+  margin-left: auto;
+  margin-right: auto;
+}
