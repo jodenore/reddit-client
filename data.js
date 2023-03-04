@@ -1,4 +1,4 @@
-let postOne = {
+export let postOne = {
   approved_at_utc: null,
   subreddit: "Chiraqology",
   selftext: "",
