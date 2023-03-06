@@ -30,6 +30,8 @@ div.posts-grid {
   max-width: 62rem;
   height: 100%;
   padding-left: 3rem;
+  overflow: hidden;
+  word-break: keep-all;
 }
 
 .post-votes {
@@ -55,43 +57,50 @@ div.posts-grid {
 .votes {
   font-size: 18px;
   font-weight: bold;
+  color: rgb(var(--tw-color-black) / var(--tw-text-opacity));
 }
 .post-information {
-  display: grid;
-  margin-bottom: 1rem;
-  gap: var(--tw-size-1);
+  display: flex;
+  margin-bottom: 0.5rem;
+  flex-direction: row;
+  gap: var(--tw-size-5);
   color: rgb(var(--tw-color-black) / var(--tw-bg-opacity));
-  grid-template-columns: repeat(3, minmax(5px, 1fr));
-  margin-left: 0.5rem;
-  place-items: start legacy;
+  margin-left: 1.5rem;
   font-size: var(--tw-font-size-xs);
-  text-align: center;
+  width: 70%;
+  align-items: center;
+  white-space: pre-wrap;
 }
-
 .post-header {
+  display: flex;
+  margin-left: 2rem;
 }
-
 .post-header h2 {
   border-width: 0;
   color: #1a1a1b;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 24px;
-  margin-left: 1.2rem;
+  font-size: var(--tw-font-size-lg);
+  font-weight: var(--tw-font-weight-medium);
+  line-height: var(--tw-line-height-9);
   margin-bottom: 1rem;
-  overflow-wrap: break-word;
   padding: 0 5px 0 0;
   vertical-align: baseline;
-  text-align: center;
+  text-align: left;
 }
 .post-header h2 > span {
   margin-left: 0.5rem;
-  background-color: rgb(var(--tw-color-green-500) / var(--tw-bg-opacity));
+  white-space: nowrap;
+  background-color: rgb(var(--tw-color-sky-400) / var(--tw-bg-opacity));
   border-radius: var(--tw-border-radius-full);
-  color: rgb(var(--tw-color-white) / var(--tw-text-opacity));
-  padding-left: var(--tw-size-2);
-  padding-right: var(--tw-size-2);
+  padding-left: var(--tw-size-3);
+  padding-right: var(--tw-size-3);
   font-size: var(--tw-font-size-sm);
+}
+.light {
+  color: white;
+}
+
+.dark {
+  color: black;
 }
 
 /* .post-body {
@@ -106,11 +115,16 @@ div.posts-grid {
   margin: 0;
 }
 
-.post-content img {
-  border-radius: 4px;
-  max-width: 100%;
-}
+ */
 
+.post-content img {
+  display: block;
+  max-width: 90%;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--tw-border-radius-3xl);
+}
 .post-footer {
   background-color: #f6f6f6;
   border-top: 1px solid #d1d1d1;
@@ -121,8 +135,7 @@ div.posts-grid {
 .post-footer p {
   font-size: 14px;
   margin: 0;
-} */
-
+}
 @media (min-width: 640px) {
   div.post-container {
     max-width: 40rem;
@@ -132,6 +145,7 @@ div.posts-grid {
 @media (min-width: 768px) {
   div.posts-container {
     max-width: 48rem;
+    gap: var(--tw-size-4);
   }
 }
 

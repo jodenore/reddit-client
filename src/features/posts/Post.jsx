@@ -1,56 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { BiUpvote, BiDownvote } from "react-icons/bi";
-const Post = ({ post }) => {
-  const [upvote, setUpvote] = useState(false);
-  const [downvote, setDownvote] = useState(false);
-  let originalVotes = post.ups;
-  const vote = (voteType) => {
-    if (voteType === "upvote" && !upvote) {
-      setUpvote(true);
-      setDownvote(false);
-      post.ups = originalVotes + 1;
-    } else if (voteType === "downvote" && !downvote) {
-      setDownvote(true);
-      setUpvote(false);
-      post.ups = originalVotes - 1;
-    } else {
-      setUpvote(false);
-      setDownvote(false);
-      post.ups = originalVotes;
-    }
-  };
+import moment from "moment";
+import Votes from "./Votes";
+export const Post = ({ post, isPicture }) => {
+  let timestamp = moment.unix(post.created);
+  let relativeDate = moment(timestamp).fromNow();
   return (
     <article className="post box-shadow">
-      <div className="post-votes">
-        <button
-          className={`post-vote transition ${upvote ? "post-voted" : ""}`}
-          onClick={() => vote("upvote")}
-        >
-          <BiUpvote />
-        </button>
-        <p className="votes">{post.ups}</p>
-        <button
-          className={`post-vote transition ${downvote ? "post-voted" : ""}`}
-          onClick={() => vote("downvote")}
-        >
-          <BiDownvote />
-        </button>
-      </div>
+      <Votes score={post.ups} />
       <div className="post-body">
+        <div className="post-information">
+          <p className="post-subreddit">{post.subreddit_name_prefixed}</p>
+          <p className="post-author">Posted by {post.author}</p>
+          <time className="post-date">{relativeDate}</time>
+        </div>
         <div className="post-header">
           <a target={"_blank"} href={`https://reddit.com${post.permalink}`}>
             <h2>
-              {post.title} <span>{post.link_flair_text}</span>
+              {post.title}
+              {post.link_flair_text ? (
+                <span
+                  style={{
+                    backgroundColor: post.author_flair_background_color,
+                  }}
+                  className={`flair ${post.link_flair_text_color}`}
+                >
+                  {post.link_flair_text}
+                </span>
+              ) : null}
             </h2>
           </a>
         </div>
-        <div className="post-information">
-          <p className="post-subreddit">{post.subreddit_name_prefixed}</p>
-          <p className="post-author">posted by {post.author}</p>
-          <time className="post-date"> 11 hours ago</time>
-        </div>
+
         <div className="post-content">
-          <img src={post.url_overridden_by_dest} />
+          {isPicture ? <img src={post.url_overridden_by_dest} /> : null}
         </div>
       </div>
     </article>
