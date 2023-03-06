@@ -7,7 +7,7 @@ export const TestContext = createContext();
 
 const TestContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("inazuma");
 
   const fetchRedditPosts = async (term) => {
     const URL = `https://www.reddit.com/search.json?q=${term}`;

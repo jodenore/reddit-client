@@ -1,8 +1,8 @@
 import React from "react";
 import { useContext } from "react";
 import { TestContext } from "../../TestContext";
-import Post from "./Post";
 import "./Post.css";
+import PostContainer from "./PostContainer";
 const PostList = () => {
   const { posts } = useContext(TestContext);
   return (
@@ -11,7 +11,7 @@ const PostList = () => {
         <div className="posts-grid">
           {posts.length > 0 ? (
             posts.map((post) => {
-              return <Post key={post.data.id} post={post.data} />;
+              return <PostContainer key={post.data.id} post={post.data} />;
             })
           ) : (
             <div>Nothing</div>
