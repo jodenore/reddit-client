@@ -7,21 +7,29 @@ export const TestContext = createContext();
 
 const TestContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
-  const [search, setSearch] = useState("inazuma");
-
+  const [searchResults, setSearchResults] = useState([]);
+  const [query, setQuery] = useState("");
   const fetchRedditPosts = async (term) => {
     const URL = `https://www.reddit.com/search.json?q=${term}`;
     const res = await axios.get(URL);
     const data = await res.data.data;
+    setSearchResults(data.children);
+  };
+
+  const fetchAllReddit = async () => {
+    const URL = `https://www.reddit.com/r/all.json`;
+    const res = await axios.get(URL);
+    const data = await res.data.data;
     setPosts(data.children);
   };
+
   useEffect(() => {
-    fetchRedditPosts(search);
-  }, [setSearch]);
+    fetchAllReddit();
+  }, []);
 
   return (
     <TestContext.Provider
-      value={{ search, setSearch, fetchRedditPosts, posts }}
+      value={{ posts, searchResults, fetchRedditPosts, query, setQuery }}
     >
       {children}
     </TestContext.Provider>
