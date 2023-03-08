@@ -32,7 +32,13 @@ const Votes = ({ score }) => {
       >
         <BiUpvote />
       </button>
-      <p className="votes">{votes}</p>
+      <p
+        className={`votes transition ${upvote ? "votes-upvoted" : ""} ${
+          downvote ? "votes-downvoted" : ""
+        }`}
+      >
+        {votes}
+      </p>
       <button
         className={`post-vote transition ${downvote ? "post-voted" : ""}`}
         onClick={() => vote("downvote")}
