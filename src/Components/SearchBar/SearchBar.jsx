@@ -1,23 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { TestContext } from "../../TestContext";
 import "./SearchBar.css";
 
 const SearchBar = () => {
-  const { search, setSearch, fetchRedditPosts } = useContext(TestContext);
+  const { fetchRedditPosts, query, setQuery } = useContext(TestContext);
+  const navigate = useNavigate();
+
+  const handleKeyPress = (e) => {
+    e.preventDefault();
+    if (query) {
+      fetchRedditPosts(query);
+      navigate({
+        pathname: "/search",
+        search: `${createSearchParams({ q: query }).toString()}`,
+      });
+      setQuery("");
+    }
+  };
 
   return (
-    <div className="search-bar">
+    <form onSubmit={handleKeyPress} className="search-bar">
       <input
         className="transition"
         placeholder="Search for Posts"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
-      <div className="search-icon">
-        <BsSearch onClick={() => fetchRedditPosts(search)} />
-      </div>
-    </div>
+      <button type={"submit"} className="search-icon">
+        <BsSearch />
+      </button>
+    </form>
   );
 };
 
