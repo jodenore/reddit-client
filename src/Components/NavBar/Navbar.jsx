@@ -9,7 +9,7 @@ const Navbar = () => {
     <header className="header-main">
       <nav className="nav-container">
         <Link to={"/"}>
-          <div class="logo-flex">
+          <div className="logo-flex">
             <div className="logo">
               <FaRedditAlien className="logo-sign" /> <span>Up</span>votely
             </div>
