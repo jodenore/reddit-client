@@ -1,10 +1,7 @@
 import React from "react";
-import { useContext } from "react";
-import { TestContext } from "../../TestContext";
 import "./Post.css";
 import PostContainer from "./PostContainer";
-const PostList = () => {
-  const { posts } = useContext(TestContext);
+const PostList = ({ posts }) => {
   return (
     <section className="posts-main">
       <div className="posts-container">
