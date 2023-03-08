@@ -9,7 +9,7 @@ export const Post = ({ post, isPicture }) => {
       <div className="post-body">
         <div className="post-information">
           <p className="post-subreddit">{post.subreddit_name_prefixed}</p>
-          <p className="post-author">Posted by {post.author}</p>
+          <p className="post-author">Posted by u/{post.author}</p>
           <time className="post-date">{relativeDate}</time>
         </div>
         <div className="post-header">
@@ -17,12 +17,7 @@ export const Post = ({ post, isPicture }) => {
             <h2>
               {post.title}
               {post.link_flair_text ? (
-                <span
-                  style={{
-                    backgroundColor: post.author_flair_background_color,
-                  }}
-                  className={`flair ${post.link_flair_text_color}`}
-                >
+                <span className={`flair ${post.link_flair_text_color}`}>
                   {post.link_flair_text}
                 </span>
               ) : null}
@@ -31,7 +26,12 @@ export const Post = ({ post, isPicture }) => {
         </div>
 
         <div className="post-content">
-          {isPicture ? <img src={post.url_overridden_by_dest} /> : null}
+          {isPicture ? (
+            <img
+              src={post.url_overridden_by_dest}
+              referrerPolicy="no-referrer"
+            />
+          ) : null}
         </div>
       </div>
     </article>
