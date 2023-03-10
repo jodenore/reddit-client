@@ -75,9 +75,9 @@ div.posts-grid {
 .votes-upvoted {
   color: rgb(var(--tw-color-sky-500) / var(--tw-text-opacity));
 }
-
-.votes-downvoted {
-  color: red;
+.votes-downvoted,
+.downvote:hover {
+  color: rgb(var(--tw-color-red-500) / var(--tw-text-opacity));
 }
 
 .post-information {
