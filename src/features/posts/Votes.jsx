@@ -5,7 +5,7 @@ const Votes = ({ score }) => {
   const [downvote, setDownvote] = useState(false);
   const [votes, setVotes] = useState(null);
   useEffect(() => {
-    setVotes((prev) => (prev = score));
+    setVotes(score);
   }, []);
 
   const vote = (voteType) => {
@@ -50,5 +50,4 @@ const Votes = ({ score }) => {
     </div>
   );
 };
-
 export default Votes;
