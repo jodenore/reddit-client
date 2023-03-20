@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./Post.css";
 import PostContainer from "./PostContainer";
 const PostList = ({ posts }) => {
@@ -8,10 +9,10 @@ const PostList = ({ posts }) => {
         <div className="posts-grid">
           {posts.length > 0 ? (
             posts.map((post) => {
-              return <PostContainer key={post.data.id} post={post.data} />;
+              return <PostContainer post={post.data} key={post.data.id} />;
             })
           ) : (
-            <div>Nothing</div>
+            <div>Empty</div>
           )}
         </div>
       </div>
