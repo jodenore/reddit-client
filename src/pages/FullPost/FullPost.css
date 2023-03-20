@@ -1,0 +1,19 @@
+.full-posts-wrapper {
+  width: 100%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 60rem;
+  margin-bottom: 2.4rem;
+  overflow: hidden;
+}
+
+.full-post {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(var(--tw-color-white) / var(--tw-bg-opacity));
+  color: rgb(var(--tw-color-gray-400) / var(--tw-text-opacity));
+}
