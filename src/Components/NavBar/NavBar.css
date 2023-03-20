@@ -62,29 +62,27 @@ nav.nav-container {
 }
 
 @media (min-width: 64rem) {
-  nav.mav-container {
-    max-width: 64rem;
-  }
   nav.nav-container {
+    max-width: 64rem;
     align-items: center;
     justify-content: space-between;
   }
 }
 
 @media (min-width: 80rem) {
-  nav.mav-container {
+  nav.nav-container {
     max-width: 80rem;
   }
 }
 
 @media (min-width: 96rem) {
-  nav.mav-container {
+  nav.nav-container {
     max-width: 96rem;
   }
 }
 
 @media (min-width: 1920px) {
-  nav.mav-container {
-    max-width: 96rem;
+  nav.nav-container {
+    max-width: 1920px;
   }
 }
