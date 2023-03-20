@@ -5,52 +5,56 @@
 }
 
 section.posts-main {
-  margin-bottom: var(--tw-size-15);
+  margin-bottom: var(--tw-size-14);
 }
 
 div.posts-container {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  overflow: hidden;
 }
 
 div.posts-grid {
+  margin-top: 1rem;
   display: grid;
-  gap: var(--tw-size-9);
+  gap: var(--tw-size-10);
   grid-template-columns: repeat(1, minmax(0, 1fr));
+  place-items: start;
 }
 
 .post {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: flex-start;
+  flex-direction: column-reverse;
   background-color: rgb(var(--tw-color-white) / var(--tw-bg-opacity));
   color: rgb(var(--tw-color-gray-400) / var(--tw-text-opacity));
-  max-width: 62rem;
-  height: auto;
-  padding-left: 3rem;
+  margin-right: 0;
+  min-height: 7rem;
+  max-height: 1000px;
+  width: 100%;
+  padding: 0.3rem;
   overflow: hidden;
   word-break: keep-all;
+  outline-offset: -2px;
 }
-
 .post:hover {
-  outline: 1px solid black;
+  outline: 2px solid black;
   cursor: pointer;
 }
 
 .post-votes {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  margin-top: 0.2rem;
+  gap: var(--tw-size-1);
   justify-content: flex-start;
   /* border-right: 1px solid #d1d1d1; */
-  height: 100%;
 }
 
 .post-vote {
   background-color: transparent;
   font-size: var(--tw-font-size-3xl);
-  margin-bottom: 5px;
+  margin-bottom: 1px;
   cursor: pointer;
 }
 
@@ -67,7 +71,7 @@ div.posts-grid {
 }
 
 .votes {
-  font-size: 18px;
+  font-size: 0.9rem;
   font-weight: bold;
   color: rgb(var(--tw-color-black) / var(--tw-text-opacity));
 }
@@ -82,18 +86,34 @@ div.posts-grid {
 
 .post-information {
   display: flex;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
   flex-direction: row;
-  gap: var(--tw-size-5);
+  line-height: var(--tw-line-height-9);
+  gap: var(--tw-size-2);
   color: rgb(var(--tw-color-gray-500) / var(--tw-bg-opacity));
-  margin-left: 1rem;
-  margin-right: auto;
+  margin-left: 0.2rem;
   font-size: var(--tw-font-size-xs);
   max-width: 100%;
-  width: 100%;
   align-items: flex-start;
   white-space: nowrap;
   overflow-x: hidden;
+  padding: 0 0.8 0 0;
+}
+.post-subreddit {
+  display: flex;
+  color: rgb(var(--tw-color-black) / var(--tw-text-opacity));
+  font-weight: var(--tw-font-weight-bold);
+  gap: var(--tw-size-1);
+}
+.subreddit-icon {
+  border-radius: 100%;
+  border-width: 0;
+  display: inline-block;
+  max-height: 20px;
+  margin: 0 4px 0 0;
+  padding: 0;
+  vertical-align: middle;
+  max-width: 20px;
 }
 .post-author:hover,
 .post-author:focus {
@@ -103,29 +123,28 @@ div.posts-grid {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: 2rem;
+  margin-left: 1.2rem;
 }
-.post-header h2 {
+.post-header-h2 {
   border-width: 0;
   color: #1a1a1b;
-  font-size: var(--tw-font-size-md);
+  font-size: var(--tw-font-size-base);
   font-weight: var(--tw-font-weight-medium);
   line-height: var(--tw-line-height-9);
   margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: 3.1rem;
-  padding: 0 5px 0 0;
+  margin-right: 0;
+  padding: 0 0.8 0 0;
   vertical-align: baseline;
   text-align: left;
 }
-.post-header h2 > span {
+.post-header-h2 > span {
   margin-left: 0.5rem;
   white-space: nowrap;
   background-color: rgb(var(--tw-color-sky-400) / var(--tw-bg-opacity));
   border-radius: var(--tw-border-radius-full);
   padding-left: var(--tw-size-3);
   padding-right: var(--tw-size-3);
-  font-size: var(--tw-font-size-sm);
+  font-size: var(--tw-font-size-xs);
 }
 .light {
   color: white;
@@ -137,12 +156,10 @@ div.posts-grid {
 
 .post-content img {
   display: block;
-  max-width: 70%;
-  max-height: auto;
-  object-fit: cover;
-  object-position: center;
-  margin-left: 2rem;
-  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
   border-radius: var(--tw-border-radius-3xl);
 }
 
@@ -151,9 +168,31 @@ div.posts-grid {
   place-items: center;
   text-align: center;
 }
+.is-loading-h2 {
+  height: 4rem;
+  width: 100%;
+  background-color: rgb(var(--tw-color-gray-200) / var(--tw-bg-opacity));
+  border-radius: var(--tw-border-radius-full);
+}
+
+.is-loading-content {
+  height: auto;
+  width: 5000%;
+  background-color: rgb(var(--tw-color-gray-200) / var(--tw-bg-opacity));
+  border-radius: var(--tw-border-radius-full);
+}
+
 @media (min-width: 640px) {
   div.post-container {
     max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .post-content img {
+    max-width: 100%;
+  }
+  .post-information {
+    gap: var(--tw-size-6);
   }
 }
 
@@ -161,21 +200,48 @@ div.posts-grid {
   div.posts-container {
     max-width: 48rem;
     gap: var(--tw-size-2);
-  }
-  .post-content img {
-    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
   }
-  .post-header h2 {
+  .post-content img {
+    max-width: 70%;
+    margin-left: 1.2rem;
     margin-right: auto;
-    font-size: var(--tw-font-size-lg);
+  }
+  .post-header-h2 {
+    margin-right: auto;
+    font-size: var(--tw-font-size-md);
+  }
+  .post {
+    flex-direction: row;
+    width: 59rem;
+    min-height: 100%;
+  }
+  .post-votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0rem;
+    gap: 0px;
   }
 }
 
 @media (min-width: 64rem) {
   div.posts-container {
     max-width: 64rem;
+  }
+  .post-content img {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .post-header-h2 {
+    margin-right: auto;
+    font-size: var(--tw-font-size-lg);
+  }
+  .post-header-h2 > span {
+    font-size: var(--tw-font-size-sm);
   }
 }
 
@@ -187,13 +253,13 @@ div.posts-grid {
 
 @media (min-width: 1536px) {
   div.posts-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--tw-size-2);
+    grid-template-columns: repeat(2, minmax(1fr, 3fr));
+    gap: var(--tw-size-5);
+    place-items: start;
   }
   .post {
-    width: 39rem;
-    min-height: auto;
-    max-height: 100%;
+    width: 100%;
+    height: auto;
   }
 
   .post-content img {
