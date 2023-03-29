@@ -390,6 +390,7 @@
     -o-tab-size: 4;
     tab-size: 4; /* 3 */
     font-family: var(--tw-font-family-sans); /* 4 */
+    scroll-behavior: smooth;
   }
 
   /*
@@ -893,7 +894,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 
 .pulse {
-  width: var(--tw-width-5xl);
   -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

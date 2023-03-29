@@ -1,41 +1,41 @@
-import React, { Suspense, useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
+  fetchCurrentComments,
   fetchFullPost,
+  setPostIsLoading,
   selectFullPost,
   selectPostIsLoading,
-} from "../../features/posts/postsSlice";
+  selectCommentsIsLoading,
+} from "../../fullpost/fullPostSlice";
 import FullPost from "./FullPost";
 import "./FullPost.css";
+import { AiFillGithub } from "react-icons/ai";
 
 const FullPostContainer = () => {
   let { subreddit, id, title } = useParams();
   const postIsLoading = useSelector(selectPostIsLoading);
-  const fullPostInfo = useSelector(selectFullPost);
+  let fullPostInfo = useSelector(selectFullPost);
   const dispatch = useDispatch();
+  const commentIsLoading = useSelector(selectCommentsIsLoading);
 
   useEffect(() => {
     // set loading flag to true when starting new fetch
+    setPostIsLoading(true);
     dispatch(fetchFullPost({ subreddit, id, title }));
+    dispatch(fetchCurrentComments({ subreddit, id, title }));
   }, [id, subreddit, title]);
 
   return (
-    <div className="full-posts-wrapper">
+    <section>
       {postIsLoading ? (
-        <div>Loading...</div>
+        <AiFillGithub className="spinner" />
       ) : (
         <FullPost fullPost={fullPostInfo} />
       )}
-    </div>
+    </section>
   );
 };
 
 export default FullPostContainer;
-
-// let {
-//   fetchFullPost,
-//   fullPostInfo,
-//   postIsLoading,
-//   setPostIsLoading,
-// } = useContext(TestContext);

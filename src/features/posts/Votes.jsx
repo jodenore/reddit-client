@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { selectIsLoading } from "./postsSlice";
 const Votes = ({ score }) => {
   const [upvote, setUpvote] = useState(false);
   const [downvote, setDownvote] = useState(false);
@@ -7,6 +9,8 @@ const Votes = ({ score }) => {
   useEffect(() => {
     setVotes(score);
   }, []);
+
+  const loading = useSelector(selectIsLoading);
 
   const vote = (voteType) => {
     if (voteType === "upvote" && !upvote) {
@@ -33,7 +37,9 @@ const Votes = ({ score }) => {
         <BiUpvote />
       </button>
       <p
-        className={`votes transition ${upvote ? "votes-upvoted" : ""} ${
+        className={`votes transition ${
+          loading ? "is-loading-votes pulse" : ""
+        } ${upvote ? "votes-upvoted" : ""} ${
           downvote ? "votes-downvoted" : ""
         }`}
       >

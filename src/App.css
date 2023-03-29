@@ -7,6 +7,20 @@
 
 body {
   background-color: rgb(var(--tw-color-gray-200) / var(--tw-bg-opacity));
+  overflow-x: hidden;
+}
+.transition {
+  transition-property: color, background-color, border-color, fill, stroke,
+    opacity, box-shadow, transform, filter, -webkit-text-decoration-color,
+    -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 div.main-container {
@@ -22,4 +36,104 @@ div.main-container {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   padding: var(--tw-size-5);
+}
+
+.spinner {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--tw-font-size-6xl);
+  line-height: var(--tw-line-height-5);
+  margin-top: 10.5rem;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  color: rgb(var(--tw-color-black) / var(--tw-text-opacity));
+}
+
+/*** Spinner */
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/** Dropdown **/
+.dropdown {
+  width: 100%;
+  cursor: pointer;
+  margin-left: 1rem;
+  margin-right: auto;
+  margin-bottom: 1.2rem;
+}
+
+.dropdown-btn {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  padding: 0.5em 1.125rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-icon-secondary {
+  font-size: var(--tw-font-size-lg);
+  line-height: var(--tw-line-height-5);
+  margin-right: 1.125rem;
+  color: rgb(var(--tw-color-sky-400) / var(--tw-text-opacity));
+  margin-left: auto;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tw-size-5);
+  list-style: none;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+    0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-bg-opacity: 1;
+  width: 21rem;
+  background-color: rgb(var(--tw-color-white) / var(--tw-bg-opacity));
+  position: absolute;
+  top: 160px;
+  border-radius: 0.5rem;
+  font-family: sans-serif;
+}
+
+.dropdown-menu > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(var(--tw-size-2) * calc(0 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(var(--tw-size-3) * var(--tw-space-y-reverse));
+}
+
+li.dropdown-item {
+  padding: 0.5rem;
+  cursor: pointer;
+  font-weight: var(--tw-font-weight-light);
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+li.dropdown-item:hover {
+  color: rgb(var(--tw-color-sky-600) / var(--tw-text-opacity));
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 64rem) {
+  .dropdown-menu {
+    flex-direction: row;
+  }
 }

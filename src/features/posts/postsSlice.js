@@ -6,17 +6,18 @@ const initialState = {
   searchResults: [],
   query: "",
   isLoading: true,
-  postIsLoading: true,
   error: null,
-  fullPostInfo: null,
+  selectedCategory: "best",
+  searchCategory: "relevance",
 };
 
 // Functions for Fetching Reddit API
 
 export const searchRedditPosts = createAsyncThunk(
   "posts/searchRedditPosts",
-  async (term) => {
-    const URL = `https://www.reddit.com/search.json?q=${term}`;
+  async (searchData) => {
+    const { query, category } = searchData;
+    const URL = `https://www.reddit.com/search.json?q=${query}&sr_detail=1&sort=${category}`;
     const response = await axios.get(URL);
     return response.data.data.children;
   }
@@ -24,22 +25,15 @@ export const searchRedditPosts = createAsyncThunk(
 
 export const fetchAllReddit = createAsyncThunk(
   "posts/fetchAllReddit",
-  async () => {
-    const URL = `https://www.reddit.com/r/all.json?sr_detail=1`;
+  async (category) => {
+    const URL = `https://www.reddit.com/r/all/${
+      category || "best"
+    }.json?sr_detail=1`;
     const response = await axios.get(URL);
     return response.data.data.children;
   }
 );
 
-export const fetchFullPost = createAsyncThunk(
-  "posts/fetchFullPost",
-  async ({ subreddit, id, title }) => {
-    const URL = `https:/www.reddit.com/r/${subreddit}/comments/${id}/${title}.json`;
-    const response = await axios.get(URL);
-    const data = response.data[0].data.children[0].data;
-    return data;
-  }
-);
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -47,8 +41,11 @@ const postsSlice = createSlice({
     setQuery: (state, action) => {
       state.query = action.payload;
     },
-    setPostIsLoading: (state, action) => {
-      state.postIsLoading = action.payload;
+    setCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
+    setSearchCategory: (state, action) => {
+      state.searchCategory = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -76,24 +73,17 @@ const postsSlice = createSlice({
       .addCase(fetchAllReddit.rejected, (state) => {
         state.isLoading = false;
         state.error = true;
-      })
-      .addCase(fetchFullPost.pending, (state) => {
-        state.postIsLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchFullPost.fulfilled, (state, action) => {
-        state.fullPostInfo = action.payload;
-        state.postIsLoading = false;
       });
   },
 });
 /// Selectors
-export const { setQuery, setPostIsLoading } = postsSlice.actions;
+export const { setQuery, setCategory, setSearchCategory } = postsSlice.actions;
 export const selectAllPosts = (state) => state.posts.posts;
 export const selectAllSearchResults = (state) => state.posts.searchResults;
 export const selectQuery = (state) => state.posts.query;
 export const selectIsLoading = (state) => state.posts.isLoading;
-export const selectFullPost = (state) => state.posts.fullPostInfo;
-export const selectPostIsLoading = (state) => state.posts.postIsLoading;
+export const selectCategory = (state) => state.posts.selectedCategory;
+export const selectSearchCategory = (state) => state.posts.searchCategory;
+
 // Reducer
 export default postsSlice.reducer;

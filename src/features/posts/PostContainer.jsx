@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
 import moment from "moment";
+import { selectIsLoading } from "./postsSlice";
+import { useSelector } from "react-redux";
+import LoadingPost from "./LoadingPost";
 
 const PostContainer = ({ post }) => {
   const [isPicture, setIsPicture] = useState(false);
+  const isLoading = useSelector(selectIsLoading);
   let timestamp = moment.unix(post.created);
   let relativeDate = moment(timestamp).fromNow();
   useEffect(() => {
@@ -13,12 +17,16 @@ const PostContainer = ({ post }) => {
         post.url_overridden_by_dest.includes("png") ||
         post.url_overridden_by_dest.includes("jpeg")
       ) {
-        setIsPicture((prev) => (prev = true));
+        setIsPicture(true);
       }
     }
   }, []);
 
-  return <Post post={post} isPicture={isPicture} relativeDate={relativeDate} />;
+  return isLoading ? (
+    <LoadingPost />
+  ) : (
+    <Post post={post} isPicture={isPicture} relativeDate={relativeDate} />
+  );
 };
 
 export default PostContainer;

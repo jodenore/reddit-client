@@ -5,21 +5,26 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import {
   searchRedditPosts,
   selectQuery,
+  selectSearchCategory,
   setQuery,
 } from "../../features/posts/postsSlice";
 import "./SearchBar.css";
 const SearchBar = () => {
-  // Selecting the query from the global state
+  // Selecting the query and category from the global state
   const query = useSelector(selectQuery);
+  const category = useSelector(selectSearchCategory);
   // dispatch(react redux) and navigate(react router) functions
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const searchData = {
+    query,
+    category,
+  };
   const handleKeyPress = (e) => {
     // Preventing the form from reloading the page
     e.preventDefault();
     if (query) {
-      dispatch(searchRedditPosts(query));
+      dispatch(searchRedditPosts(searchData));
       navigate({
         pathname: "/search",
         search: `${createSearchParams({ q: query }).toString()}`,

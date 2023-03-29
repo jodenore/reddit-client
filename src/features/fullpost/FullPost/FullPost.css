@@ -1,0 +1,117 @@
+.full-posts-wrapper {
+  width: 100%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 30rem;
+  max-height: 120rem;
+  margin-bottom: 2.4rem;
+  overflow: hidden;
+  color: rgb(var(--tw-color-gray-400) / var(--tw-text-opacity));
+}
+
+.full-post {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 60%;
+  background-color: rgb(var(--tw-color-white) / var(--tw-bg-opacity));
+  width: 100%;
+}
+.full-post-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 3rem;
+  max-width: 100%;
+  font-size: var(--tw-font-size-base);
+  align-items: flex-start;
+  white-space: nowrap;
+  overflow-x: hidden;
+  padding: 0 2rem 0 0;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid rgb(236, 228, 228);
+}
+
+.post-footer {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  gap: var(--tw-size-1);
+}
+
+.full-header-h2 {
+  font-size: var(--tw-font-size-lg);
+  text-align: left;
+  margin-left: 1.2rem;
+}
+
+.full-post-p {
+  padding: var(--tw-size-10);
+  color: rgb(var(--tw-color-black) / var(--tw-text-opacity));
+  font-size: var(--tw-font-size-sm);
+  text-align: left;
+}
+
+.full-post-content > img {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.full-votes {
+  margin-top: 0rem;
+}
+
+.flex {
+  display: flex;
+  gap: var(--tw-size-2);
+}
+.left {
+  display: grid;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+@media (min-width: 640px) {
+  .full-posts-wrapper {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .full-posts-wrapper {
+    max-width: 768px;
+  }
+  .full-post-info {
+    flex-direction: row;
+    gap: var(--tw-size-3);
+    border-bottom: none;
+    font-size: var(--tw-font-size-sm);
+    margin-left: 1.7rem;
+  }
+}
+
+/* @media (min-width: 1024px) {
+  .full-posts-wrapper {
+    max-width: 1024px;
+  }
+  .full-post {
+    min-width: 46rem;
+    max-width: 65rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .full-posts-wrapper {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .full-posts-wrapper {
+    max-width: 1536px;
+  }
+} */

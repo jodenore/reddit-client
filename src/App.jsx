@@ -5,8 +5,9 @@ import Navbar from "./Components/NavBar/Navbar";
 import SearchResults from "./pages/SearchResults";
 import Home from "./pages/Home";
 import "./App.css";
+import "animate.css";
 import NotFound from "./pages/NotFound";
-import FullPostContainer from "./pages/FullPost/FullPostContainer";
+import FullPostContainer from "./features/fullpost/FullPost/FullPostContainer";
 
 function App() {
   return (
