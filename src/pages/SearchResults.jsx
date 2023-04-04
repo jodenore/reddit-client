@@ -6,9 +6,11 @@ import PostList from "../features/posts/PostList";
 import {
   searchRedditPosts,
   selectAllSearchResults,
+  selectIsLoading,
   setSearchCategory,
   selectSearchCategory,
 } from "../features/posts/postsSlice";
+import NoSearchResults from "./NoSearchResults";
 const SearchResults = () => {
   //Reads the query in state and adds it to the end of the url
   const [searchParams] = useSearchParams();
@@ -16,6 +18,7 @@ const SearchResults = () => {
   const dispatch = useDispatch();
   const searchResults = useSelector(selectAllSearchResults);
   const category = useSelector(selectSearchCategory);
+  const isLoading = useSelector(selectIsLoading);
   const searchData = {
     query,
     category,
@@ -32,6 +35,13 @@ const SearchResults = () => {
       dispatch(searchRedditPosts(searchData));
     }
   }, [category]);
+  let searchContent = null;
+  if (searchResults?.length > 0) {
+    searchContent = <PostList posts={searchResults} loading={isLoading} />;
+  } else if (searchResults?.length === 0 && !isLoading) {
+    searchContent = <NoSearchResults />;
+  }
+
   return (
     <>
       <CategoryDropdown
@@ -39,7 +49,7 @@ const SearchResults = () => {
         categorySelector={selectSearchCategory}
         categoryAction={setSearchCategory}
       />
-      <PostList posts={searchResults} />;
+      {searchContent}
     </>
   );
 };
