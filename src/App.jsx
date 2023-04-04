@@ -8,11 +8,13 @@ import "./App.css";
 import "animate.css";
 import NotFound from "./pages/NotFound";
 import FullPostContainer from "./features/fullpost/FullPost/FullPostContainer";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
   return (
     <div className="main-container">
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path={`/search`} element={<SearchResults />} />
