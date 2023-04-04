@@ -1,4 +1,4 @@
-/* :root {
+:root {
   --tw-screen-sm: 640px;
   --tw-screen-md: 768px;
   --tw-screen-lg: 1024px;
@@ -352,7 +352,7 @@
   --tw-border-radius-2xl: 1rem;
   --tw-border-radius-3xl: 1.5rem;
   --tw-border-radius-full: 9999px;
-} */
+}
 
 @layer tailwind-reset {
   /*
@@ -906,3 +906,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
     scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 } */
+
+@supports not (font-size: var(--tw-font-size-base)) {
+  .post-header-h2 {
+    font-size: 1rem;
+  }
+}
