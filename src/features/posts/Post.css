@@ -49,11 +49,6 @@ div.posts-grid {
   margin-top: 1rem;
   gap: var(--tw-size-1);
   justify-content: flex-start;
-  /* width: 35%;
-  padding: 0.9rem;
-  border: 1px;
-  border-radius: var(--tw-border-radius-3xl);
-  background-color: rgb(var(--tw-color-gray-200) / var(--tw-bg-opacity)); */
 }
 
 .post-vote {
@@ -212,12 +207,7 @@ video {
     margin-left: auto;
     margin-right: auto;
   }
-  /* .post-content img {
-    max-width: 100%;
-    min-height: auto;
-    object-fit: contain;
-    margin: 0 auto;
-  } */
+
   .post-information {
     flex-direction: row;
     gap: var(--tw-size-6);
@@ -269,9 +259,6 @@ video {
   .post-header-h2 > span {
     font-size: var(--tw-font-size-sm);
   }
-  /* .post-content img {
-    max-width: 100%;
-  } */
 }
 
 @media (min-width: 1280px) {
@@ -282,7 +269,6 @@ video {
 
 @media (min-width: 1536px) {
   div.posts-grid {
-    /* grid-template-columns: repeat(2, minmax(1fr, 3fr)); */
     gap: var(--tw-size-5);
     place-items: start;
   }

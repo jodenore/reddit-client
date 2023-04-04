@@ -29,7 +29,6 @@ const SearchBar = () => {
         pathname: "/search",
         search: `${createSearchParams({
           q: query,
-          sort: category,
         }).toString()}`,
       });
       dispatch(setQuery(""));
