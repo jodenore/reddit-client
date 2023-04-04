@@ -29,19 +29,23 @@ const CategoryDropdown = ({ categories, categorySelector, categoryAction }) => {
         )}
       </Menu.Button>
       <Transition
+        show={isOpen}
         enter="transition duration-100 ease-out"
         enterFrom="transform scale-95 opacity-0"
         enterTo="transform scale-100 opacity-100"
-        leave="transition duration-75 ease-out"
-        leaveFrom="transform scale-100 opacity-100"
-        leaveTo="transform scale-95 opacity-0"
+        leave="transition duration-200 ease-in-out"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
       >
         <Menu.Items className="dropdown-menu ">
           {categories.map(({ categoryName }, index) => {
             return (
               <Menu.Item
                 as="li"
-                onClick={() => dispatch(categoryAction(categoryName))}
+                onClick={() => {
+                  dispatch(categoryAction(categoryName));
+                  setIsOpen(false);
+                }}
                 key={index}
                 className="dropdown-item"
               >
