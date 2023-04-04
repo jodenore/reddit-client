@@ -63,5 +63,7 @@ export const selectPostIsLoading = (state) => state.fullPost.postIsLoading;
 export const selectCommentsIsLoading = (state) =>
   state.fullPost.commentsIsLoading;
 
+export const selectAllCurrentComments = (state) => state.fullPost.comments;
+
 //Reducer
 export default fullPostSlice.reducer;
