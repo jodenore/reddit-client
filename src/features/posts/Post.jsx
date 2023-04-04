@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Votes from "./Votes";
 import PlaceHolder from "../../assets/icon_placeholder.png";
+import "./Post.css";
 export const Post = ({ post, isPicture, relativeDate }) => {
   return (
     <article className={`post ease transition box-shadow `}>
