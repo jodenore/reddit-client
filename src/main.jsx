@@ -11,7 +11,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Router>
       <React.StrictMode>
-      <ScrollToTop/>
         <App />
       </React.StrictMode>
     </Router>
