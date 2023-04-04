@@ -39,7 +39,7 @@ div.posts-grid {
   outline-offset: -2px;
 }
 .post:hover {
-  outline: 2px solid black;
+  outline: 1px solid black;
   cursor: pointer;
 }
 
@@ -92,17 +92,17 @@ div.posts-grid {
 .post-information {
   display: flex;
   margin-bottom: 0.1rem;
-  flex-direction: row;
+  flex-direction: column;
   line-height: var(--tw-line-height-9);
-  gap: var(--tw-size-2);
   color: rgb(var(--tw-color-gray-500) / var(--tw-bg-opacity));
   margin-left: 0.2rem;
-  font-size: var(--tw-font-size-xs);
   max-width: 100%;
+  font-size: clamp(var(--tw-font-size-xs), 1vw, var(--tw-font-size-sm));
   align-items: flex-start;
   white-space: nowrap;
-  overflow-x: hidden;
-  padding: 0 0.8 0 0;
+  overflow-wrap: break-word;
+  padding: 0 0.8rem;
+  word-break: break-word;
 }
 .post-subreddit {
   display: flex;
@@ -142,7 +142,8 @@ div.posts-grid {
   vertical-align: baseline;
   text-align: left;
 }
-.post-header-h2 > span {
+.post-header-h2 > span,
+h1 > span {
   margin-left: 0.5rem;
   white-space: nowrap;
   background-color: rgb(var(--tw-color-sky-400) / var(--tw-bg-opacity));
@@ -159,7 +160,8 @@ div.posts-grid {
   color: black;
 }
 
-.post-content img {
+.post-content img,
+video {
   display: block;
   max-width: 100%;
   height: auto;
@@ -217,6 +219,7 @@ div.posts-grid {
     margin: 0 auto;
   } */
   .post-information {
+    flex-direction: row;
     gap: var(--tw-size-6);
   }
 }
@@ -235,7 +238,7 @@ div.posts-grid {
   }
   .post {
     flex-direction: row;
-    width: 59rem;
+    width: 44rem;
     min-height: 100%;
   }
   .post-votes {
@@ -254,6 +257,9 @@ div.posts-grid {
 @media (min-width: 64rem) {
   div.posts-container {
     max-width: 64rem;
+  }
+  .post {
+    width: 65%;
   }
 
   .post-header-h2 {
