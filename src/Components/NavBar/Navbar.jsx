@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link to={"/"}>
           <div className="logo-flex">
             <div className="logo">
-              <FaRedditAlien className="logo-sign transition" /> <span>Up</span>{" "}
+              <FaRedditAlien className="logo-sign" /> <span>Up</span>{" "}
               <span>votely</span>
             </div>
           </div>
