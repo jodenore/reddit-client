@@ -12,7 +12,7 @@ const initialState = {
 export const fetchFullPost = createAsyncThunk(
   "fullPost/fetchFullPost",
   async ({ subreddit, id, title }) => {
-    const URL = `https:/www.reddit.com/r/${subreddit}/comments/${id}/${title}.json?raw_json=1`;
+    const URL = `https://www.reddit.com/r/${subreddit}/comments/${id}/${title}.json?raw_json=1`;
     const response = await axios.get(URL);
     const data = response.data[0].data.children[0].data;
     return data;
@@ -22,7 +22,7 @@ export const fetchFullPost = createAsyncThunk(
 export const fetchCurrentComments = createAsyncThunk(
   "fullPost/fetchCurrentComments",
   async ({ subreddit, id, title }) => {
-    const URL = `https:/www.reddit.com/r/${subreddit}/comments/${id}/${title}.json?raw_json=1`;
+    const URL = `https://www.reddit.com/r/${subreddit}/comments/${id}/${title}.json?raw_json=1`;
     const response = await axios.get(URL);
     const data = response.data[1].data.children;
     return data;
@@ -46,6 +46,11 @@ const fullPostSlice = createSlice({
       .addCase(fetchFullPost.fulfilled, (state, action) => {
         state.fullPostInfo = action.payload;
         state.postIsLoading = false;
+      })
+      .addCase(fetchFullPost.rejected, (state, action) => {
+        state.fullPostInfo = action.payload;
+        state.postIsLoading = false;
+        state.error = true;
       })
       .addCase(fetchCurrentComments.pending, (state) => {
         state.commentsIsLoading = true;
