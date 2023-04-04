@@ -27,7 +27,10 @@ const SearchBar = () => {
       dispatch(searchRedditPosts(searchData));
       navigate({
         pathname: "/search",
-        search: `${createSearchParams({ q: query }).toString()}`,
+        search: `${createSearchParams({
+          q: query,
+          sort: category,
+        }).toString()}`,
       });
       dispatch(setQuery(""));
     }
