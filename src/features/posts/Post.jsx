@@ -40,6 +40,14 @@ export const Post = ({ post, isPicture, relativeDate }) => {
               referrerPolicy="no-referrer"
             />
           ) : null}
+          {post.is_video ? (
+            <video controls>
+              <source
+                src={post.secure_media.reddit_video.fallback_url}
+                type="video/mp4"
+              />
+            </video>
+          ) : null}
         </div>
       </div>
     </article>
