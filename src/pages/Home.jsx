@@ -8,12 +8,14 @@ import {
   selectAllPosts,
   selectCategory,
   setCategory,
+  selectIsLoading,
 } from "../features/posts/postsSlice";
 import "./Home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const posts = useSelector(selectAllPosts);
   const category = useSelector(selectCategory);
+  const isLoading = useSelector(selectIsLoading);
   let categories = [
     { id: 1, categoryName: "best" },
     { id: 2, categoryName: "hot" },
@@ -30,7 +32,7 @@ const Home = () => {
         categorySelector={selectCategory}
         categoryAction={setCategory}
       />
-      <PostList posts={posts} />
+      <PostList posts={posts} loading={isLoading} />
     </div>
   );
 };
