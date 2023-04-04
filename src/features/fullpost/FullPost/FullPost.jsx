@@ -1,58 +1,86 @@
 import React from "react";
 import { GoComment } from "react-icons/go";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import Votes from "../../posts/Votes";
-const FullPost = ({ fullPost }) => {
+import parse from "html-react-parser";
+import CommentList from "../../comments/Comments/CommentLists";
+import MiniVotes from "../../../Components/MiniVotes";
+import { RxCross1 } from "react-icons/rx";
+const FullPost = ({
+  subreddit,
+  author,
+  postTitle,
+  score,
+  navigate,
+  flair,
+  flairColor,
+  postImage,
+  postContent,
+  numOfComments,
+  comments,
+  backgroundColor,
+}) => {
   return (
     <div className="full-posts-wrapper">
+      <div className="full-post-bar">
+        <div class="post-bar-inner">
+          <div className="post-bar-title">
+            <MiniVotes score={score} />
+            <h1 className="post-bar-h1">
+              {postTitle}
+              {flair ? (
+                <span
+                  style={{ backgroundColor: backgroundColor, borderRadius: 0 }}
+                  className={`flair ${flairColor}`}
+                >
+                  {flair}
+                </span>
+              ) : null}
+            </h1>
+          </div>
+          <div className="go-back">
+            <button title="Close" onClick={() => navigate(-1)}>
+              <RxCross1 />
+            </button>
+          </div>
+        </div>
+      </div>
       <article className="full-post">
         <div className="full-post-body post-body">
           <div className="full-post-info">
-            <p className="post-subreddit">{fullPost.subreddit_name_prefixed}</p>
+            <p className="post-subreddit">{subreddit}</p>
             <div className="flex">
               <span>Posted</span>
-
-              <p className="full-post-author post-author">
-                by {fullPost.author}
-              </p>
+              <p className="full-post-author post-author">by {author}</p>
               <time className="full-post-time post-time">3 hours ago</time>
             </div>
           </div>
           <div className="post-header">
-            <h2 className=" full-header-h2 post-header-h2">
-              {fullPost.title}
-              {fullPost.link_flair_text ? (
-                <span className={`flair ${fullPost.link_flair_text_color}`}>
-                  {fullPost.link_flair_text}
+            <h2 className="full-header-h2 post-header-h2">
+              {postTitle}
+              {flair ? (
+                <span
+                  style={{ backgroundColor: backgroundColor, borderRadius: 0 }}
+                  className={`flair ${flairColor}`}
+                >
+                  {flair}
                 </span>
               ) : null}
             </h2>
           </div>
         </div>
         <div className="full-post-content post-content">
-          {fullPost.url_overridden_by_dest ? (
-            <img src={fullPost.url_overridden_by_dest} />
-          ) : null}
-          {fullPost.selftext ? (
-            <ReactMarkdown
-              children={fullPost.selftext}
-              className="full-post-p"
-            />
-          ) : null}
+          {postImage ? <img src={postImage} /> : null}
+          <div className="post-self-text">
+            {postContent ? parse(postContent) : null}
+          </div>
         </div>
         <div className="post-footer">
-          <GoComment />
-          <p>{fullPost.num_comments} comments</p>
+          <GoComment className="comment-icon" />
+          <p>{numOfComments} comments</p>
         </div>
       </article>
+      {comments?.length > 0 ? <CommentList comments={comments} /> : null}
     </div>
   );
 };
 
 export default FullPost;
-
-{
-  /* <p className="full-post-p">{fullPost.selftext}</p> */
-}
-
-// <Votes className="full-votes" score={fullPost.ups} />
